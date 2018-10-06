@@ -6,6 +6,8 @@ docs
 .coverage
 coverage
 *.lock
+_mediainfo_cffi.cpp
+_mediainfo_cffi.o
 
 # github defaults for python
 

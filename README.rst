@@ -3,6 +3,7 @@ libmediainfo_cffi
 #################
 
 This library provides a convenient CFFI wrapper for `libmediainfo <https://github.com/MediaArea/MediaInfoLib/>`_, a lightweight library that displays information about video and audio files.
+Supported attributes `here <https://mediaarea.net/it/MediaInfo/Support/Tags>`_.
 
 Quickstart
 ==========
@@ -28,9 +29,7 @@ Now you have a formatted string, happy parsing!
 
 You can also call this library from the CLI:
 
-.. code:: Bash
-
-    python libmediainfo_cffi filename
+``python libmediainfo_cffi filename``
 
 Differences between this and `pymediainfo <https://github.com/sbraz/pymediainfo/>`_
 ===================================================================================
@@ -40,3 +39,8 @@ Differences between this and `pymediainfo <https://github.com/sbraz/pymediainfo/
 Installation
 ============
 ``pip install libmediainfo_cffi``
+
+Development
+===========
+| Download the source, launch ``make setup-dev`` and start tinkering.
+| Note: the .cpp and .h file in the libmediainfo_cffi directory are not used directly, but read as strings and fed to CFFI. They are useful only for IDE code hinting. Don't try to compile them with CMake, it won't work.

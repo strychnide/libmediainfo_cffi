@@ -14,7 +14,7 @@ ffibuilder.set_source("_mediainfo_cffi",
                       wrapper,
                       libraries=['mediainfo'],
                       source_extension='.cpp',
-                      extra_compile_args=['-D_UNICODE', '-std=c++11', '-I/usr/include/MediaInfo', '-export-dynamic'])
+                      extra_compile_args=['-D_UNICODE', '-I/usr/include/MediaInfo'])
 
 if __name__ == "__main__":
     ffibuilder.compile(verbose=True)
