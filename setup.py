@@ -29,10 +29,6 @@ setup(
             'flake8-import-order',
             'flake8-quotes',
             'flake8-bugbear',
-            'sphinx',
-            'sphinx-autodoc-typehints',
-            'sphinx_rtd_theme',
-            'coverage'
         ]
     },
     packages=find_packages()
