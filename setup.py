@@ -4,21 +4,22 @@ with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name='libmediainfo-cffi',
+    name='libmediainfo_cffi',
     version='1.0.0',
     author='Alessandro Cerruti',
     author_email='thereap3r97@gmail.com',
     description='CFFI interface for libmediainfo',
     long_description=long_description,
     long_description_content_type='text/x-rst',
-    url='https://github.com/strychnide/libmediainfo-cffi',
+    url='https://github.com/strychnide/libmediainfo_cffi',
     license='MIT',
     project_urls={
-        'Source': 'https://github.com/strychnide/libmediainfo-cffi',
-        'Issues': 'https://github.com/strychnide/libmediainfo-cffi/issues'
+        'Source': 'https://github.com/strychnide/libmediainfo_cffi',
+        'Issues': 'https://github.com/strychnide/libmediainfo_cffi/issues'
     },
     python_requires='>=3.5',
     setup_requires=["cffi"],
+    cffi_modules=["libmediainfo_cffi/_cffi.py:ffibuilder"],
     install_requires=[
         'cffi'
     ],
@@ -34,6 +35,3 @@ setup(
     packages=find_packages()
 )
 
-
-
-# cffi_modules=["piapprox_build:ffibuilder"], # "filename:global"

@@ -42,5 +42,5 @@ Installation
 
 Development
 ===========
-| Download the source, launch ``make setup-dev`` and start tinkering.
+| Download the source, launch ``make setup`` and start tinkering.
 | Note: the .cpp and .h file in the libmediainfo_cffi directory are not used directly, but read as strings and fed to CFFI. They are useful only for IDE code hinting. Don't try to compile them with CMake, it won't work.

@@ -8,7 +8,9 @@ python_version = "3.5"
 
 [packages]
 "e1839a8" = {path = "."}
+pip = "==18.0"
 
 [dev-packages]
 "e1839a8" = {path = ".", extras = ["dev"], editable = true}
-"libmediainfo-cffi" = {editable = true, path = ".", extras = ["dev"]}
+"libmediainfo_cffi" = {editable = true, path = ".", extras = ["dev"]}
+pip = "==18.0"
