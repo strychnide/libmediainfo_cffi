@@ -9,7 +9,7 @@ lint:
 
 .PHONY: build
 build:
-	python3 setup.py sdist bdist_wheel
+	python3 setup.py sdist
 
 .PHONY: build-cffi
 build-cffi:

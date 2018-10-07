@@ -1,0 +1,2 @@
+include libmediainfo_cffi/mediainfo_wrapper.cpp
+include libmediainfo_cffi/mediainfo_wrapper.h
