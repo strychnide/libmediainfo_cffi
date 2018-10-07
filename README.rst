@@ -33,12 +33,16 @@ You can also call this library from the CLI:
 
 Differences between this and `pymediainfo <https://github.com/sbraz/pymediainfo/>`_
 ===================================================================================
-| The main difference is that this library uses the API mode of CFFI, while pymediainfo uses the ABI mode. Libmediainfo_cffi approach is safer and faster, but it's a bit more complicated to debug (since you need to wrapper the C++ mediainfo library in C to comunicate with Python.
-| On the other hand, pymediainfo is more tested, Python only, so a bit easier to read (don't be mistaken, this library is PyPy compatible too, and it works great!) and **supports Python 2** (while this library doesn't and won't) and it's maybe more buggy if you need crossplatform capabilities (since, it uses ABI mode).
+| The main difference is that this library uses the API mode of CFFI, while pymediainfo uses the ABI mode. Libmediainfo_cffi approach is safer and faster but it's a bit more complicated to debug, since you need to wrap the C++ mediainfo library in C to comunicate with Python.
+| On the other hand pymediainfo is more tested, Python only, so a bit easier to read (don't be mistaken, this library is PyPy compatible too, and it works great!) and **supports Python 2** (while this library doesn't and won't) and has crossplatform capabilities (since it uses ABI mode).
 
 Installation
 ============
 ``pip install libmediainfo_cffi``
+
+| Note: you need to have libmediainfo installed and the following files:
+- /usr/include/MediaInfo/MediaInfo.h
+- $PATH/libmediainfo.so
 
 Development
 ===========
