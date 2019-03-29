@@ -14,7 +14,8 @@ Easy enough:
     from libmediainfo_cffi import get_metadata_as_dict
     metadata_dict = get_metadata_as_dict('path/to/file')
 
-| And voilà, you get a dict with the following structure:
+And voilà, you get a dict with the following structure:
+
 - keys are track types (General/Audio/Video)
 - values are dicts "{tag: tag_value}"
 
@@ -40,7 +41,8 @@ Installation
 ============
 ``pip install libmediainfo_cffi``
 
-| Note: you need to have libmediainfo installed and the following files:
+Note: you need to have libmediainfo installed and the following files:
+
 - /usr/include/MediaInfo/MediaInfo.h
 - $PATH/libmediainfo.so
 

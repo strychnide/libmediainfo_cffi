@@ -1,24 +1,30 @@
-.PHONY: setup
-setup:
-	# https://github.com/pypa/pipenv/issues/2924
-	PIPENV_VENV_IN_PROJECT=1 pipenv --python 3.5 && pipenv install pip==18.0 && pipenv install --dev -e .[dev]
-
-.PHONY: lint
-lint:
-	pipenv run flake8 libmediainfo-cffi
-
 .PHONY: build
+
+setup:
+	virtualenv .venv --python=python3.6
+	. .venv/bin/activate; pip install -e .[dev]
+
+setup-simple:
+	virtualenv .venv --python=python3.6
+	. .venv/bin/activate; pip install .
+
+lint:
+	. .venv/bin/activate; python3 -m flake8 libmediainfo-cffi
+#	. .venv/bin/activate; python3 -m flake8 tests/unit
+
+test:
+	make clean
+	make setup-simple
+	. .venv/bin/activate; python3 -m unittest discover -s tests/unit/ -p test_*.py
+	make clean
+#	. .venv/bin/activate; python3 -m coverage run -m unittest discover -s tests/unit/ -p test_*.py
+#	. .venv/bin/activate; python3 -m coverage html
+
 build:
-	python3 setup.py sdist
+	. .venv/bin/activate; python3 setup.py bdist_wheel
 
-.PHONY: build-cffi
-build-cffi:
-	cd "libmediainfo_cffi" && pipenv run python _cffi.py && cd -
+build-docs:
+	. .venv/bin/activate; python3 -m sphinx-build -b html docs/src docs/dist
 
-.PHONY: publish
-publish:
-	twine upload dist/*
-
-.PHONY: clean
 clean:
-	@rm -r .venv .mypy_cache *.egg-info build dist docs/dist coverage .coverage
+	-rm -r .venv *.egg-info build dist docs/dist coverage .coverage _mediainfo_cffi.abi3.so

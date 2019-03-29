@@ -1,7 +1,5 @@
 from _mediainfo_cffi import ffi, lib
 
-# tested with libmediainfo 18.08.1
-
 
 def get_metadata(path, path_encoding='utf-8', c_retval_encoding='utf-8'):
     mi = lib.New()
