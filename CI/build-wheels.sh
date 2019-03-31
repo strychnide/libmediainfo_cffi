@@ -27,5 +27,5 @@ $pip install .[dev]
 $python -m flake8 libmediainfo-cffi
 $python -m flake8 tests/unit
 $python -m unittest discover -s tests/unit/ -p test_*.py
-$python setup.py sdist bdist_wheel
+$python setup.py bdist_wheel
 auditwheel repair dist/*.whl

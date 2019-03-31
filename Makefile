@@ -20,3 +20,4 @@ build-docs:
 
 clean:
 	-rm -r .venv *.egg-info build dist docs/dist coverage .coverage _mediainfo_cffi.abi3.so
+
