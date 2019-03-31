@@ -12,9 +12,10 @@ install:
   - pip install twine
 
 before_script:
-  - sudo chmod +x ./CI/build-wheels.sh
+  - sudo chmod +x ./CI/*.sh
 
 script:
+  - set +e
   - docker run --rm -v `pwd`:/io $DOCKER_IMAGE io/CI/build-wheels.sh
   - python -m twine check dist/* wheelhouse/*
-  - python -m twine upload wheelhouse/*.whl -u $TWINE_USERNAME -p $TWINE_PASSWORD
+  - . CI/publish-wheels.sh
