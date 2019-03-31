@@ -3,7 +3,6 @@ notifications:
 
 sudo: required
 language: python
-python: '3.6'
 services:
   - docker
 env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
@@ -17,7 +16,5 @@ before_script:
 
 script:
   - docker run --rm -v `pwd`:/io $DOCKER_IMAGE io/CI/build-wheels.sh
-  #  - docker run --mount type=bind,src=`pwd`,dst=/io centos:7 io/CI/build-wheels.sh
   - python -m twine check dist/* wheelhouse/*
   - python -m twine upload wheelhouse/*.whl dist/*.tar.gz -u $TWINE_USERNAME -p $TWINE_PASSWORD
-

@@ -29,8 +29,8 @@ extern "C" {
         free(mi);
     }
 
-    char* Inform (MediaInfo* mi, size_t Reserved=0) {
-        std::wstring retval = mi->Inform(Reserved);
+    char* Inform (MediaInfo* mi) {
+        std::wstring retval = mi->Inform();
         std::string retval_narrow(retval.begin(), retval.end());
 
         return strdup(retval_narrow.c_str());

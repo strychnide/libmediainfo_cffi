@@ -1,40 +1,36 @@
 from _mediainfo_cffi import ffi, lib
 
 
-def get_metadata(path, path_encoding='utf-8', c_retval_encoding='utf-8'):
-    mi = lib.New()
-    found = lib.Open(mi, path.encode(path_encoding))
+class MediaInfo:
+    def __init__(self):
+        self.mediainfo = lib.New()
 
-    if found == 0:
-        lib.Close(mi)
-        raise FileNotFoundError
+    def open(self, path: bytes):
+        found = lib.Open(self.mediainfo, path)
 
-    inform = lib.Inform(mi, 0)  # MAY leak memory
-    lib.Close(mi)
+        if found == 0:
+            lib.Close(self.mediainfo)
+            raise FileNotFoundError
 
-    return ffi.string(inform).decode(c_retval_encoding)
+    def inform(self):
+        info = lib.Inform(self.mediainfo)
 
+        return ffi.string(info).decode('utf-8')
 
-def get_metadata_as_dict(path, *args, **kwargs):
-    metadata = get_metadata(path, *args, **kwargs)
-    metadata_dict = {}
-    curr_var = ''
+    def close(self):
+        lib.Close(self.mediainfo)
 
-    for line in metadata.splitlines():
-        split_line = line.split(':')
-        if len(split_line) > 1:
-            metadata_dict[curr_var][split_line[0].strip()] = split_line[1].strip()
-        elif split_line[0] != '':
-            curr_var = split_line[0]
-            metadata_dict[curr_var] = {}
+    def option(self, key: bytes, value: bytes = ''):
+        # https://github.com/MediaArea/MediaInfoLib/blob/master/Source/MediaInfo/MediaInfo.h
+        # Inform: XML, HTML, JSON, CSV, OLDXML
+        lib.Option(self.mediainfo, key, value)
 
-    return metadata_dict
-
-
-if __name__ == '__main__':
-    from sys import argv
-
-    if len(argv) < 2:
-        raise Exception('You must specify a file name')
-
-    print(get_metadata_as_dict(argv[1]))
+    @classmethod
+    def read_metadata(cls, path: str, **kwargs):
+        mi = cls()
+        mi.open(path.encode())
+        for key, value in kwargs.items():
+            mi.option(key.encode(), value.encode())
+        info = mi.inform()
+        mi.close()
+        return info

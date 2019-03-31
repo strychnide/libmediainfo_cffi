@@ -10,11 +10,10 @@ setup-simple:
 
 lint:
 	. .venv/bin/activate; python -m flake8 libmediainfo-cffi
-#	. .venv/bin/activate; python -m flake8 tests/unit
+	. .venv/bin/activate; python -m flake8 tests/unit
 
 test:
-	. .venv/bin/activate; python -m coverage run -m unittest discover -s tests/unit/ -p test_*.py
-#	. .venv/bin/activate; python -m coverage html
+	. .venv/bin/activate; python -m unittest discover -s tests/unit/ -p test_*.py
 
 build-docs:
 	. .venv/bin/activate; python -m sphinx-build -b html docs/src docs/dist
