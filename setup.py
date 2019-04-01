@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setup(
     name='libmediainfo_cffi',
-    version='2.1.2',
+    version='2.1.3',
     author='Alessandro Cerruti',
     author_email='thereap3r97@gmail.com',
     description='CFFI interface for libmediainfo',
@@ -31,5 +31,5 @@ setup(
             'flake8-bugbear',
         ]
     },
-    packages=find_packages(exclude=['*_cffi.py'])
+    packages=find_packages()
 )

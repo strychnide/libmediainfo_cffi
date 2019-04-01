@@ -1,0 +1,2 @@
+include libmediainfo_cffi/cdef.h
+include libmediainfo_cffi/wrapper.cpp
