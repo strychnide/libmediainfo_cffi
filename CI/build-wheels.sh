@@ -13,41 +13,12 @@ versions=(35 36 37)
 
 cd /io
 
-curl -L https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.6-7.1.0-beta-linux_x86_64-portable.tar.bz2 --output pypy3.tar.bz2
-
-tar -xjf pypy3.tar.bz2
-ls pypy3*
-python="pypy3*/bin/pypy"
-$python -m ensurepip
-
-pip="${python} -m pip"
-
-$pip install .[dev]
-
 yum -y install python-hashlib
 
 for package in ${packages[@]}; do
     curl $package --output package.rpm
     rpm -i package.rpm
 done
-
-curl -L https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.6-7.1.0-beta-linux_x86_64-portable.tar.bz2 --output pypy3.tar.bz2
-#curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
-
-mkdir pypy3
-tar -xjf pypy3.tar.bz2 -C pypy3
-ls pypy3
-python="pypy3/bin/python"
-$python -m ensurepip
-
-#$python get-pip.py
-pip="${python} -m pip"
-
-$pip install .[dev]
-$python -m flake8 libmediainfo-cffi
-$python -m flake8 tests/unit
-$python -m unittest discover -s tests/unit/ -p test_*.py
-$python setup.py bdist_wheel
 
 python_dist=''
 python=''
@@ -60,10 +31,8 @@ for python_ver in ${versions[@]}; do
     $python -m flake8 libmediainfo-cffi
     $python -m flake8 tests/unit
     $python -m unittest discover -s tests/unit/ -p test_*.py
-    $python setup.py bdist_wheel
+    $python setup.py sdist bdist_wheel
 done
-
-
 
 for wheel in dist/*.whl; do
     auditwheel repair $wheel
