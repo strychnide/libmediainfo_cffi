@@ -1,7 +1,7 @@
 typedef struct MediaInfo MediaInfo;
 
 MediaInfo* New();
-size_t Open (MediaInfo* mi, char* FileName);
+size_t Open (MediaInfo* mi, wchar_t* FileName);
 void Close(MediaInfo* mi);
-char* Inform(MediaInfo* mi);
-char* Option(MediaInfo* mi, char *Option, char* Value);
+wchar_t* Inform(MediaInfo* mi);
+wchar_t* Option(MediaInfo* mi, wchar_t *Option, wchar_t* Value);

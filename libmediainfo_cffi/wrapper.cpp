@@ -7,19 +7,13 @@
 using namespace MediaInfoLib;
 
 extern "C" {
-    std::wstring char_to_wstring(char* src, size_t size) {
-        wchar_t buffer[size];
-        mbstowcs(buffer, src, size);
-        return std::wstring(buffer);
-    }
-
     MediaInfo* New() {
         MediaInfo* mi = new MediaInfo();
         return mi;
     }
 
-    size_t Open (MediaInfo *mi, char* FileName) {
-        std::wstring _FileName = char_to_wstring(FileName, STRING_LENGTH);
+    size_t Open (MediaInfo *mi, wchar_t* FileName) {
+        std::wstring _FileName(FileName);
 
         return mi->Open(_FileName);
     }
@@ -29,20 +23,18 @@ extern "C" {
         free(mi);
     }
 
-    char* Inform (MediaInfo* mi) {
+    wchar_t* Inform (MediaInfo* mi) {
         std::wstring retval = mi->Inform();
-        std::string retval_narrow(retval.begin(), retval.end());
 
-        return strdup(retval_narrow.c_str());
+        return wcsdup(retval.c_str());
     }
 
-    char* Option(MediaInfoLib::MediaInfo* mi, char* Option, char* Value) {
-        std::wstring _Option = char_to_wstring(Option, STRING_LENGTH);
-        std::wstring _Value = char_to_wstring(Value, STRING_LENGTH);
+    wchar_t* Option(MediaInfoLib::MediaInfo* mi, wchar_t* Option, wchar_t* Value) {
+        std::wstring _Option(Option);
+        std::wstring _Value(Value);
 
         std::wstring retval = mi->Option(_Option, _Value);
-        std::string retval_narrow(retval.begin(), retval.end());
 
-        return strdup(retval_narrow.c_str());
+        return wcsdup(retval.c_str());
     }
 }
