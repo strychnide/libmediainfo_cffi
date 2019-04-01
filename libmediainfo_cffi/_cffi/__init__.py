@@ -2,14 +2,14 @@ import os
 
 from cffi import FFI
 
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
 libmediainfo_path = os.environ.get('LIBMEDIAINFO_PATH', '/usr/lib/libmediainfo.so')
 ffibuilder = FFI()
 
-with open('libmediainfo_cffi/cdef.h', 'r') as f:
+with open('%s/cdef.h' % dir_path, 'r') as f:
     cdefs = f.read()
 
-with open('libmediainfo_cffi/wrapper.cpp', 'r') as f:
+with open('%s/wrapper.cpp' % dir_path, 'r') as f:
     wrapper = f.read()
 
 ffibuilder.cdef(cdefs)
