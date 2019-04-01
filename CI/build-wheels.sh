@@ -16,7 +16,8 @@ cd /io
 curl -L https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.6-7.1.0-beta-linux_x86_64-portable.tar.bz2 --output pypy3.tar.bz2
 
 tar -xjf pypy3.tar.bz2
-python="pypy3*/bin/python"
+ls pypy3*
+python="pypy3*/bin/pypy"
 $python -m ensurepip
 
 pip="${python} -m pip"
