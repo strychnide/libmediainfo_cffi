@@ -15,7 +15,6 @@ before_script:
   - sudo chmod +x ./CI/*.sh
 
 script:
-  - set +e
   - docker run --rm -v `pwd`:/io $DOCKER_IMAGE io/CI/build-wheels.sh
   - python -m twine check dist/* wheelhouse/*
-  - . CI/publish-wheels.sh
+  - python -m twine upload wheelhouse/*.whl dist/*.tar.gz -u $TWINE_USERNAME -p $TWINE_PASSWORD
