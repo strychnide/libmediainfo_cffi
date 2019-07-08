@@ -3,22 +3,11 @@ set -e
 
 export LIBMEDIAINFO_PATH="/usr/lib64/libmediainfo.so"
 
-packages=(
- "https://mediaarea.net/download/binary/libzen0/0.4.37/libzen0-0.4.37.x86_64.CentOS_5.rpm"
- "https://mediaarea.net/download/binary/libzen0/0.4.37/libzen-devel-0.4.37.x86_64.CentOS_5.rpm"
- "https://mediaarea.net/download/binary/libmediainfo0/18.05/libmediainfo0-18.05.x86_64.CentOS_5.rpm"
- "https://mediaarea.net/download/binary/libmediainfo0/18.05/libmediainfo-devel-18.05.x86_64.CentOS_5.rpm"
-)
-versions=(35 36 37)
+versions=(36 37)
 
 cd /io
 
-yum -y install python-hashlib
-
-for package in ${packages[@]}; do
-    curl $package --output package.rpm
-    rpm -i package.rpm
-done
+yum -y install libmediainfo libmediainfo-devel
 
 python_dist=''
 python=''

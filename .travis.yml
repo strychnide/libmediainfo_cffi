@@ -5,7 +5,7 @@ sudo: required
 language: python
 services:
   - docker
-env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
+env: DOCKER_IMAGE=quay.io/pypa/manylinux2010_x86_64
 
 install:
   - docker pull $DOCKER_IMAGE
